@@ -1,0 +1,33 @@
+<h1>{{name | uppercase}}</h1>
+<h1>{{today | date:'dd/MM/yyyy'}}</h1>
+<h1>{{today | date:'short'}}</h1>
+<h1>{{today | date:'long'}}</h1>
+<h1>{{today | date}}</h1>
+<h1>{{price | currency:'INR'}}</h1>
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+        <input type="text" placeholder="search products" [(ngModel)]="searchKey" name="searchKey" class="form-control my-4">
+    </div>
+    <div class="col"></div>
+</div>
+
+<div class="row">
+  @for (item of products | search : searchKey; track $index) {
+    
+    <div class="col-md-3 mb-4">
+      <div class="card h-100">
+        <img [src]="item.thumbnail" class="card-img-top" alt="product image">
+
+        <div class="card-body text-center">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">₹ {{item.price}}</p>
+          <a href="#!" class="btn btn-primary">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+  }
+</div>
+

@@ -1,0 +1,109 @@
+<app-admin-header></app-admin-header>
+<div class="row">
+    <div class="col-2">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-10">
+        <div class="container-fluid min-vh-100 p-4">
+            <h1 class="text-center mb-4">
+                {{ recipeId ? 'Edit Recipe Details' : 'Add Recipe Details' }}
+            </h1>
+            <form [formGroup]="recipeForm" (ngSubmit)="submit()">
+                <div class="bg-white shadow p-4 rounded">
+                    <div class="row">
+                        <div class="col">
+                            <div class=" mb-3">
+                                <label class="mb-1">Recipe Name</label>
+                                <input type="text" class="form-control" formControlName="name">
+                                @if (recipeForm.get('name')?.invalid && recipeForm.get('name')?.touched) {
+                                    <p class="text-danger fw-bolder">* Invalid Password</p>
+                                }
+                            </div>
+
+                            <div class=" mb-3">
+                                <label class="mb-1">Preparation Time</label>
+                                <input type="text" class="form-control" formControlName="prepTimeMinutes">
+                            </div>
+
+                            <div class=" mb-3">
+                                <label class="mb-1">Choose Cuisine Type</label>
+                                <select class="form-select" formControlName="cuisine">
+                                    <option>Indian</option>
+                                    <option>Italian</option>
+                                    <option>Chinese</option>
+                                    <option>Mexican</option>
+                                    <option>Moroccan</option>
+                                    <option>Turkish</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="mb-1">Recipe image url</label>
+                                <input type="text" class="form-control" formControlName="image">
+                            </div>
+                            <div class="mb-3">
+                                <label class="mb-1">Ingridients</label>
+                                <div class="d-flex">
+                                    <textarea class="form-control" rows="2" formControlName="ingredients"></textarea>
+                                    <button class="btn btn-success ms-2">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class=" mb-3">
+                                <label class="mb-1">Cooking Time</label>
+                                <input type="text" class="form-control" formControlName="cookTimeMinutes">
+                            </div>
+                            <div class=" mb-3">
+                                <label class="mb-1">Recipe servings</label>
+                                <input type="text" class="form-control" formControlName="servings">
+                            </div>
+                            <div class="mb-3">
+                                <label class="mb-1">Mode of cooking</label>
+                                <select class="form-select" formControlName="difficulty">
+                                    <option>Easy</option>
+                                    <option>Medium</option>
+                                    <option>Hard</option>
+                                </select>
+                            </div>
+                            <div class=" mb-3">
+                                <label class="mb-1">Calories</label>
+                                <input type="text" class="form-control" formControlName="caloriesPerServing">
+                            </div>
+                            <div class="mb-3">
+                                <label class="mb-1">Instructions</label>
+                                <div class="d-flex">
+                                    <textarea class="form-control" rows="2" formControlName="instructions"></textarea>
+                                    <button class="btn btn-success ms-2">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 border rounded p-3 mt-2">
+                        <label class="mb-3">Choose Meal Type :</label>
+                        <div class="d-flex flex-wrap gap-3">
+                            <div><input type="checkbox" title="dinner" value="Dinner"
+             (change)="getValue($event)"> Dinner</div>
+                            <div><input type="checkbox" title="Breakfast"> Breakfast</div>
+                            <div><input type="checkbox" title="Beverage"> Beverage</div>
+                            <div><input type="checkbox" title="Snack"> Snack</div>
+                            <div><input type="checkbox" title="Side Dish"> Side Dish</div>
+                            <div><input type="checkbox" title="Lunch"> Lunch</div>
+                            <div><input type="checkbox" title="Snacks"> Snacks</div>
+                            <div><input type="checkbox" title="Dessert"> Dessert</div>
+                            <div><input type="checkbox" title="Appetizer"> Appetizer</div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-warning px-5">
+                            {{ recipeId ? 'Update Recipe' : 'Add Recipe' }}
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
